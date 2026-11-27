@@ -11,7 +11,7 @@
 </p>
 
 <p align="center">
-  <a href="CHANGELOG.md"><img src="docs/assets/badges/version.png" alt="Version 0.1.2" height="22"></a>
+  <a href="CHANGELOG.md"><img src="docs/assets/badges/version.png" alt="Version 0.1.3" height="22"></a>
   <a href="INSTALLATION.md"><img src="docs/assets/badges/home-assistant.png" alt="Home Assistant 2026.10 and newer" height="22"></a>
   <a href="LICENSE"><img src="docs/assets/badges/license.png" alt="MIT license" height="22"></a>
   <a href="#privacy"><img src="docs/assets/badges/local-first.png" alt="Local-first with data stored in Home Assistant" height="22"></a>
@@ -55,6 +55,8 @@ The date strip opens past timelines. Click an intermediate brush marker to revea
 
 <!-- ha-marketplace:exclude-start -->
 ## Installation
+
+[![Open your Home Assistant instance and open Family Sink in HACS or the Marketplace.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=boretestprojects&repository=family-sink&category=integration)
 
 You'll need **Home Assistant 2026.10.0 or newer**, administrator access for setup, and at least one brush with state and duration entities from the official **Oral-B** integration. Family Sink reads those entities from Home Assistant. Home Assistant's Oral-B integration handles communication with the toothbrush. [Official Oral-B setup and supported devices](https://www.home-assistant.io/integrations/oralb/)
 

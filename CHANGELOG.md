@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.1.3
+
+Release metadata for the Home Assistant community catalogue. The integration, game rules and panel are unchanged from 0.1.2.
+
+- Add the My Home Assistant badge for opening Family Sink in HACS or the Marketplace.
+- Declare the `http` dependency in the integration manifest and run the frontend checks on Ubuntu 24.04.
+
 ## 0.1.2
 
 First version prepared for the Home Assistant community. See the [release notes](docs/RELEASE_NOTES.md).
