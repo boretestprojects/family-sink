@@ -1,0 +1,8 @@
+[
+  {"id":"rowan","name":"Rowan","color":"#2563eb","avatar":"fox","team":"leader","active":true},
+  {"id":"avery","name":"Avery","color":"#0f766e","avatar":"bear","team":"leader","active":true},
+  {"id":"casey","name":"Casey","color":"#7e22ce","avatar":"rabbit","team":"kids","active":true},
+  {"id":"morgan","name":"Morgan","color":"#a16207","avatar":"owl","team":"kids","active":true},
+  {"id":"riley","name":"Riley","color":"#be185d","avatar":"panda","team":"kids","active":true},
+  {"id":"quinn","name":"Quinn","color":"#0369a1","avatar":"cat","team":"kids","active":true}
+]

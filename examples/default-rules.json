@@ -1,0 +1,16 @@
+{
+  "thresholds": [15, 30, 50, 70, 90, 120, 180],
+  "points": [0, -3, -2, 0, 3, 5, 7, 10],
+  "missingMorning": -5,
+  "missingEvening": -5,
+  "missedDay": -15,
+  "masterDuration": 180,
+  "masterCount": 3,
+  "masterBonus": 20,
+  "targetDuration": 120,
+  "dayStart": 180,
+  "morningStart": 240,
+  "morningEnd": 720,
+  "eveningStart": 1080,
+  "eveningEnd": 240
+}

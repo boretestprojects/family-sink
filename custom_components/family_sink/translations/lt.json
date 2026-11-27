@@ -1,0 +1,13 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Nustatyti „Family Sink“",
+        "description": "Baigę sąranką, šoninėje juostoje atidarykite „Family Sink“, pridėkite šeimos narius ir priskirkite šepetėlius iš „Home Assistant“ integracijos „Oral-B“."
+      }
+    },
+    "abort": {
+      "already_configured": "Šioje „Home Assistant“ sistemoje jau nustatyta „Family Sink“ šeima."
+    }
+  }
+}

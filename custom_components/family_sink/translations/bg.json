@@ -1,0 +1,13 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Настройка на Family Sink",
+        "description": "След настройката отворете Family Sink от страничното меню, за да добавите участници и да им присвоите четки от интеграцията Oral-B на Home Assistant."
+      }
+    },
+    "abort": {
+      "already_configured": "В този Home Assistant вече има настроено семейство във Family Sink."
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "name": "family-sink",
+  "version": "0.1.2",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "check:build": "node scripts/build.mjs --check",
+    "test": "node --test tests/game.test.js",
+    "test:browser": "playwright test"
+  },
+  "dependencies": {
+    "@fontsource-variable/manrope": "5.2.8",
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.56.1",
+    "esbuild": "0.25.12",
+    "postcss": "8.5.34",
+    "tailwindcss": "3.4.19"
+  }
+}

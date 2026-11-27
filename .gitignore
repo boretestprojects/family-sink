@@ -1,0 +1,23 @@
+/app.js
+/index.html
+/Automation *.txt
+/dist/
+*.migration.tmp
+brush_log.txt
+family-sink-brush-log.txt
+.storage/
+.homeassistant/
+.visual-check/
+.env
+.env.*
+*.zip
+.tools/
+.venv/
+.npm-cache/
+node_modules/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+test-results/
+playwright-report/

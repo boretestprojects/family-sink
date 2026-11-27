@@ -1,0 +1,4 @@
+* text=auto eol=lf
+frontend/** text eol=lf
+scripts/** text eol=lf
+custom_components/family_sink/frontend/** text eol=lf

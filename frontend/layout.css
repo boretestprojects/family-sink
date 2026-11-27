@@ -1,0 +1,120 @@
+.dashboard-header { gap: .75rem; }
+.header-actions { flex: 0 0 auto; }
+.header-avatars { display: none; max-width: 34cqw; overflow-x: auto; padding: 6px; scrollbar-width: none; }
+.header-avatars > * { flex: 0 0 auto; }
+.header-avatar span { font-size: 1.05rem; }
+.header-button {
+  flex: 0 0 auto;
+  display: inline-grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  color: #475569;
+  background: rgba(255, 255, 255, .70);
+  border: 1px solid white;
+  border-radius: 100%;
+  box-shadow: 0 2px 8px rgb(15 23 42 / .08);
+  font-size: 1.15rem;
+}
+.header-button:hover { background: white; }
+:is(button, input, select, summary):focus-visible { outline: 2px solid #2563eb; outline-offset: 2px; }
+.date-tabs { overflow-x: auto; scrollbar-width: thin; padding-top: 2px; }
+.date-tabs .tab-polish[aria-pressed="true"] { transform: translateY(-2px); }
+.family-grid, .summary-grid { grid-template-columns: minmax(0, 1fr); }
+.profile-card {
+  --profile-glow: color-mix(in srgb, var(--profile-color, transparent) 18%, transparent);
+  min-width: 0;
+  background-color: color-mix(in srgb, var(--profile-color, white) 16%, white);
+  box-shadow: var(--card-shadow), 0 12px 30px var(--profile-glow);
+}
+.profile-card:hover { box-shadow: var(--card-shadow-hover), 0 14px 34px var(--profile-glow); }
+.profile-avatar { width: 82px; height: 82px; }
+.profile-avatar .avatar-emoji { font-size: 3rem; line-height: 1; }
+.profile-name {
+  color: color-mix(in srgb, var(--profile-color) 70%, #0f172a);
+  font-size: 2rem;
+}
+.profile-card.is-brushing .profile-details { padding-top: 2.375rem; }
+.brushing-pill {
+  right: .75rem;
+  top: .75rem;
+  animation: familySinkBadgePulse 1.4s ease-in-out infinite;
+}
+.fs-activity-spin {
+  flex: none;
+  transform-origin: center;
+  transform-box: view-box;
+  animation: familySinkActivitySpin 2s linear infinite;
+}
+.brushing-seconds {
+  display: inline-block;
+  min-width: 3ch;
+  text-align: end;
+  font-variant-numeric: tabular-nums;
+}
+@keyframes familySinkBadgePulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.03); opacity: .92; }
+}
+@keyframes familySinkActivitySpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.progress-ring-value { transition: stroke-dashoffset .35s ease; }
+.timeline-sessions { justify-content: safe center; scrollbar-width: none; }
+.timeline-sessions > * { flex-shrink: 0; }
+.score-table :is(th, td) { padding: .35rem .25rem; text-align: right; }
+.score-table th:first-child { text-align: left; overflow-wrap: anywhere; }
+.history-row { display: grid; gap: .45rem; grid-template-columns: minmax(0, 1fr) auto auto; }
+.settings-page { padding: 1rem; max-width: 900px; margin: 0 auto; color: #1e293b; }
+.settings-page > * + * { margin-top: 1rem; }
+.settings-section { border-radius: 1.25rem; padding: 1rem; }
+.settings-section > summary, .settings-form summary { cursor: pointer; font-weight: 800; }
+.settings-section[open] > summary { margin-bottom: .85rem; }
+.settings-form { display: grid; gap: .85rem; grid-template-columns: minmax(0, 1fr); }
+.settings-form > label { display: grid; gap: .3rem; font-weight: 700; font-size: .9rem; min-width: 0; }
+.settings-form :is(input:not([type="checkbox"]), select) {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  background: white;
+  border: 1px solid #cbd5e1;
+  border-radius: .6rem;
+  padding: .55rem;
+  font-weight: 500;
+}
+.settings-form input[type="color"] { height: 2.4rem; }
+.settings-form small { color: #475569; font-weight: 500; }
+.settings-form details .settings-form { margin-top: .7rem; }
+.settings-wide { grid-column: 1 / -1; min-width: 0; }
+.settings-button { padding: .5rem .8rem; border: 1px solid #cbd5e1; background: white; border-radius: .65rem; font-weight: 750; }
+.settings-button:hover { background: #f8fafc; }
+.settings-button.primary, .settings-button[aria-pressed="true"] { color: white; background: #1d4ed8; border-color: #1d4ed8; }
+.settings-button:disabled { opacity: .6; cursor: default; }
+.profile-dot { display: inline-block; width: .6em; height: .6em; border-radius: 50%; margin-right: .35em; vertical-align: .07em; }
+
+@container (min-width: 640px) {
+  .summary-grid, .settings-form { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .brushing-pill { left: 7rem; right: auto; transform-origin: center left; }
+}
+@container (min-width: 800px) {
+  .family-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .header-avatars { display: flex; }
+}
+@container (max-width: 540px) {
+  .dashboard-header { flex-wrap: wrap; }
+  .header-actions { margin-left: auto; }
+  .dashboard-header h1 { font-size: clamp(1rem, 4.8cqw, 1.25rem); }
+}
+@container (max-width: 360px) {
+  .profile-card, .timeline-panel { padding: .8rem; }
+  .profile-card.is-brushing .profile-details { padding-top: 2.75rem; }
+  .profile-row { gap: .55rem; }
+  .profile-name { font-size: 1.5rem; }
+  .brand-mark { width: 2.25rem; height: 2.25rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  /* Keep the small live-sensor status indicator moving while brushing is active. */
+  :where(:not(.brushing-pill, .fs-activity-spin)), *::before, *::after { animation-duration: .01ms !important; }
+  *, *::before, *::after { transition-duration: .01ms !important; }
+}

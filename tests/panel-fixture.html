@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Family Sink browser fixture</title>
+  <style>body, html { height: 100%; margin: 0; } body { overflow: hidden; }</style>
+</head>
+<body>
+<family-sink-panel></family-sink-panel>
+<script type="module">
+  import "./panel.js";
+  const [people, rules] = await Promise.all(["./demo", "./rules"].map((path) => fetch(path).then((result) => result.json())));
+  const query = new URL(location).searchParams;
+  const profiles = query.has("empty") ? [] : people.map((person) => ({ ...person, device: null, manual: {}, start: null }));
+  const sessions = [
+    ["start", "2026-02-04T08:05:12+01:00", 120],
+    ["middle", "2026-02-04T13:01:00+01:00", 30],
+    ["finish", "2026-02-04T20:10:04+01:00", 184],
+    ["old", "2026-01-21T23:00:00+01:00", 20],
+  ].map(([id, timestamp, duration]) => ({ id, timestamp, duration, userId: "rowan" }));
+  const element = document.querySelector("family-sink-panel");
+  if (query.has("ha-shell")) {
+    const shell = document.createElement("ha-panel-custom");
+    const outerStyles = document.createElement("style");
+    outerStyles.textContent = `
+      :host { display: block; height: 100%; }
+      .brushing-pill, svg { animation: none !important; transform: none !important; }
+      @keyframes familySinkBadgePulse { to { transform: none; } }
+      @keyframes familySinkActivitySpin { to { transform: none; } }
+    `;
+    element.replaceWith(shell);
+    shell.attachShadow({ mode: "open" }).append(outerStyles, element);
+  }
+  const admin = query.has("admin");
+  let hass = {
+      language: "en",
+      connected: true,
+      user: { is_admin: admin },
+      states: {
+        "sensor.demo_state": { state: "running", attributes: {} },
+        "sensor.demo_time": { state: "95", attributes: { unit_of_measurement: "s" } },
+        "sensor.demo_battery": { state: "65", attributes: {} },
+      },
+      async callWS(message) {
+        if (message.type === "family_sink/dashboard") return {
+          profiles: profiles.map((person) => ({
+            ...person, avatarRevision: person.id === "avery" ? "fixture-photo" : null,
+            entities: person.id === "rowan"
+              ? { state: "sensor.demo_state", duration: "sensor.demo_time", battery: "sensor.demo_battery" } : {},
+          })),
+          rules, sessions, historyRevision: "initial", timeZone: "Europe/Oslo",
+        };
+        if (message.type === "family_sink/avatar" && message.person === "avery") {
+          return "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQIHWP4z8DwHwAFgAI/ScLttAAAAABJRU5ErkJggg==";
+        }
+        if (message.type === "family_sink/admin" && admin) {
+          if (message.action === "settings") return {
+            profiles, rules, defaults: rules, devices: [], sensors: [], diagnostics: [], sessionCount: sessions.length,
+          };
+          if (message.action === "profile") {
+            profiles.push({ ...message.data, id: "test-person" });
+            return { id: "test-person" };
+          }
+          if (message.action === "preview") return { sources: ["legacy"], valid: 1, invalid: 0 };
+          if (message.action === "import") return { added: 1, duplicates: 0, unmapped: 0, invalid: 0 };
+          if (message.action === "export") return "2026-02-04T08:05:12+01:00|rowan|120";
+        }
+        throw { code: "unauthorized" };
+      },
+  };
+  if (query.has("release-demo")) {
+    const { setupReleaseDemo } = await import("./release-demo.mjs");
+    setupReleaseDemo(element, rules, admin);
+  } else {
+    element.setProperties({ narrow: innerWidth < 600, hass });
+  }
+  window.updateDemoSensors = (duration, battery) => {
+    hass = {
+      ...hass,
+      states: {
+        ...hass.states,
+        "sensor.demo_time": { ...hass.states["sensor.demo_time"], state: String(duration) },
+        "sensor.demo_battery": { ...hass.states["sensor.demo_battery"], state: String(battery) },
+      },
+    };
+    element.setProperties({ hass });
+  };
+</script>
+</body>
+</html>

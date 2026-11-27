@@ -1,0 +1,13 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Set up Family Sink",
+        "description": "After setup, open Family Sink from the sidebar to add participants and assign toothbrushes from Home Assistant’s Oral-B integration."
+      }
+    },
+    "abort": {
+      "already_configured": "This Home Assistant instance already has a Family Sink household."
+    }
+  }
+}
